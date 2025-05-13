@@ -1,15 +1,20 @@
 //
+//  FeatureA.swift
+//  EnvyTemplate
+//
+//  Created by 강지윤 on 5/13/25.
+//
 import FeatureBaseKit
 import UIKit
 import TestFeatureAInterface
 
-public final class FeatureAInjectItem: FeatureAInjectable {
-    public var key: FeatureInjectKey = .FeatureA
+final class FeatureAInjectItem: FeatureAInjectable {
+    var key: FeatureInjectKey = .FeatureA
     
-    public init() { }
+    init() { }
     
-    public func openFeatureA(navigationController: UINavigationController?,
-                             diContainer: DIContainerProtocol) {
+    func openFeatureA(navigationController: UINavigationController?,
+                      diContainer: DIContainerProtocol) {
         let coordinator = FeatureACoordinator(viewParameter: .init(),
                                               baseViewController: navigationController,
                                               diContainter: diContainer)

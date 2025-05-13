@@ -1,16 +1,14 @@
 //
-//  FeatureBCoordinator.swift
-//  TestFeatureAFeature
+//  FeatureACoordinator.swift
+//  EnvyTemplate
 //
 //  Created by 강지윤 on 5/13/25.
 //
 import UIKit
 import FeatureBaseKit
 import TestFeatureBInterface
-
-protocol FeatureACoordinatorProtocol {
-    func openFeatureB()
-}
+import TestFeatureAFeature
+import TestFeatureAInterface
 
 class FeatureACoordinator: BaseCoordinatorProtocol,
                            FeatureACoordinatorProtocol {
@@ -38,12 +36,13 @@ class FeatureACoordinator: BaseCoordinatorProtocol,
         baseViewController?.pushViewController(viewController, animated: true)
     }
     
-    func openFeatureB() {
+    func openFeatureB(delegate: FeatureBDeletate) {
         Task {
             let featureB = await diContainter.featureContainer.resolveAdapter(for: .FeatureB) as? FeatureBInjectable
             await MainActor.run {
                 featureB?.openFeatureB(navigationController: baseViewController,
-                                       diContainer: diContainter)
+                                       diContainer: diContainter,
+                                       delegate: delegate)
             }
         }
     }

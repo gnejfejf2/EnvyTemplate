@@ -3,7 +3,7 @@ import ProjectDescriptionHelpers
 
 let project = Project.module(name: ModulePaths.Feature.TestFeatureB.targetName(type: .interface),
                              moduleTargets: [
-                                .dynamicFramework,
+                                .staticLibrary,
 //                                .testSourceModule,
 //                                .demoApp,
 //                                .unitTest

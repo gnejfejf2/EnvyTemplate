@@ -9,8 +9,7 @@ let project = Project.module(name: ModulePaths.Feature.TestFeatureA.targetName(t
                                 .unitTest
                              ],
                              dependencies: [
-                                .feature(target: .TestFeatureA, type: .interface),
-                                .feature(target: .TestFeatureB, type: .interface)
+                                .feature(target: .TestFeatureA, type: .interface)
                              ],
                              demoAppDependencies: [
                                 .feature(target: .SampleAppHelper, type: .feature)

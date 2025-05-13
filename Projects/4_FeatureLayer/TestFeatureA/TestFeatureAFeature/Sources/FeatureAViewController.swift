@@ -7,25 +7,26 @@
 import UIKit
 import SnapKit
 import FeatureBaseKit
+import TestFeatureAInterface
 
-final class FeatureAViewController: UIViewController, BaseViewControllerProtocol {
-    var coordinator: any FeatureACoordinatorProtocol
+public final class FeatureAViewController: UIViewController, BaseViewControllerProtocol {
+    public var coordinator: any FeatureACoordinatorProtocol
     
     var label = UILabel()
     var button = UIButton()
     
-    init(coordinator: any FeatureACoordinatorProtocol) {
+    public init(coordinator: any FeatureACoordinatorProtocol) {
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
         makeUI()
         bindUI()
     }
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func makeUI() {
+    public func makeUI() {
         view.backgroundColor = .white
         view.addSubview(label)
         label.snp.makeConstraints { make in
@@ -43,11 +44,17 @@ final class FeatureAViewController: UIViewController, BaseViewControllerProtocol
         button.addTarget(self, action: #selector(onTapButton), for: .touchUpInside)
     }
     
-    func bindUI() {
+    public func bindUI() {
         
     }
     
     @objc private func onTapButton() {
-        coordinator.openFeatureB()
+        coordinator.openFeatureB(delegate: self)
+    }
+}
+
+extension FeatureAViewController: FeatureBDeletate {
+    public func featureBViewDidLoad() {
+        print("Envy: featureBViewDidLoad")
     }
 }

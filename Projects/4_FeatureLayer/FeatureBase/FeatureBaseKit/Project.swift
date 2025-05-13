@@ -16,6 +16,5 @@ let project = Project.module(name: ModulePaths.Feature.FeatureBase.targetName(ty
                                 .shared(target: .LocalDB, type: .interface),
                                 .shared(target: .Network, type: .interface),
                                 .core(target: .DesignSystem, type: .kit),
-                                .core(target: .CoreService, type: .interface),
-                                .external(name: "ReducerKit", condition: nil)
+                                .core(target: .CoreService, type: .interface)
                              ])

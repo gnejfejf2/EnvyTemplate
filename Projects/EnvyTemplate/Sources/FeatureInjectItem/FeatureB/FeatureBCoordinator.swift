@@ -6,8 +6,8 @@
 //
 import UIKit
 import FeatureBaseKit
-
-protocol FeatureBCoordinatorProtocol: BaseCoordinatorProtocol { }
+import TestFeatureBFeature
+import TestFeatureBInterface
 
 class FeatureBCoordinator: FeatureBCoordinatorProtocol {
     
@@ -21,18 +21,21 @@ class FeatureBCoordinator: FeatureBCoordinatorProtocol {
     
     var diContainter: any DIContainerProtocol
     
+    weak var delegate: FeatureBDeletate?
+    
     init(viewParameter: ViewParameter,
          baseViewController: UINavigationController?,
-         diContainter: any DIContainerProtocol) {
+         diContainter: any DIContainerProtocol,
+         delegate: FeatureBDeletate?) {
         self.viewParameter = viewParameter
         self.baseViewController = baseViewController
         self.diContainter = diContainter
+        self.delegate = delegate
     }
     
     func start(animated: Bool) {
-        let viewController = FeatureBViewController(coordinator: self)
+        let viewController = FeatureBViewController(coordinator: self,
+                                                    delegate: delegate)
         baseViewController?.pushViewController(viewController, animated: true)
     }
-    
-    
 }
